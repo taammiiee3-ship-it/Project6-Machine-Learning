@@ -38,15 +38,21 @@ for hours, score in zip(new_hours, predictions):
         "-> Predicted Performance:", round(score, 2)
     )
 
-    
-hours = float(input("\nEnter training hours: "))
+while True:
+    user_input = input("\nEnter training hours (or type 'exit' to quit): ")
 
-user_prediction = model.predict([[hours]])
+    if user_input.lower() == "exit":
+        print("Goodbye!")
+        break
 
-print(
-    "Predicted Performance Score:",
-    round(user_prediction[0], 2)
-)
+    hours = float(user_input)
+
+    user_prediction = model.predict([[hours]])
+
+    print(
+        "Predicted Performance Score:",
+        round(user_prediction[0], 2)
+    )
 
 plt.scatter(training_hours, performance_scores, label="Actual Data")
 
